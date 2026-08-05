@@ -1,0 +1,11 @@
+# Legacy 交接文档
+
+范围：ehafo-quiz、ehafo_android_app，以及小护排班、screenshot_server、iOS PageSpy、DCloud 转让和 PC 壳等关联事项。
+主体：项目概况、问题排查、经验总结。
+
+阅读顺序：
+1. /project-overview
+2. /troubleshooting
+3. /lessons
+
+不要把源码推断写成已确认规则。不要记录凭据、用户身份或生产日志原文。
