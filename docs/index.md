@@ -2,24 +2,28 @@
 layout: home
 
 hero:
-  name: Legacy 交接文档
-  text: 项目概况、问题排查与经验总结
-  tagline: 聚焦接手后真正需要了解和能够使用的内容
+  name: 项目接手手册
+  text: 从证据到结论
+  tagline: 不背源码细节，找到项目事实源，用现有工具完成开发、排查与验收
   actions:
     - theme: brand
-      text: 查看项目概况
-      link: /project-overview
-    - theme: alt
       text: 查看问题排查
-      link: /troubleshooting
+      link: /ehafo-frontend/troubleshooting
+    - theme: alt
+      text: 查看项目地图
+      link: /project-overview
 
 features:
-  - title: 项目概况
-    details: 说明负责范围、核心仓库、关联服务及各端之间的关系。
-  - title: 问题排查
-    details: 从用户现场、PageSpy、异常日志和设备调试建立证据链。
-  - title: 经验总结
-    details: 汇总 A/B 收口、兼容性、测试验收和跨端开发经验。
+  - title: 疑难问题排查
+    details: 从用户现场、运行版本和分段证据建立可判决的证据链，无法定位时再增加有区分力的观测。
+  - title: 项目内高频工作流
+    details: 直接用自然语言交给 Agent，由 Agent 自行读取源码事实源、完成修改并按风险选择真实验收路径。
+  - title: 逻辑项目地图
+    details: 只在需要定位责任边界时查看仓库和系统关系；具体实现、构建步骤与完整踩坑说明回到源仓。
 ---
 
-源码负责说明当前实现，本项目说明接手后需要知道什么、遇到问题如何处理。
+## 建议阅读顺序
+
+首次接手先读[项目地图](/project-overview)，确认当前工作属于哪个逻辑项目。
+
+易哈佛前台从[项目概况](/ehafo-frontend/overview)和[仓库与系统关系](/ehafo-frontend/repositories)开始；涉及 MP、人机对话、内部考核或电子试卷时进入[MP 与 subproject](/ehafo-frontend/mp-and-subprojects)。收到线上反馈时进入[问题排查](/ehafo-frontend/troubleshooting)；准备上线或验收时核对[测试、验收与项目经验](/ehafo-frontend/lessons)。小护排班只在涉及该项目时阅读[项目概况与发布](/schedule/overview)。

@@ -1,12 +1,13 @@
-# Legacy 交接文档
+# 项目接手手册
 
-本仓库本身就是项目交接文档，用于汇总项目概况、问题排查方法和实践经验。源码是补充和验证依据，不在这里逐文件复述。
+本仓库直接面向接手人员，重点记录项目特有的判断方法、疑难问题排查、验收边界和可直接交给 Agent 的高频工作流提示词。仓库关系只用于帮助找到事实源；具体实现、构建步骤和完整踩坑说明应维护在源仓，本仓只提供必要入口。
 
-## 阅读入口
+## 建议阅读顺序
 
-1. [项目概况](docs/project-overview.md)
-2. [问题排查](docs/troubleshooting.md)
-3. [经验总结](docs/lessons.md)
+1. [项目地图](docs/project-overview.md)
+2. [易哈佛前台](docs/ehafo-frontend/overview.md)
+3. [易哈佛前台：问题排查](docs/ehafo-frontend/troubleshooting.md)
+4. 专项需要时再读 [MP 与 subproject](docs/ehafo-frontend/mp-and-subprojects.md) 或[小护排班](docs/schedule/overview.md)
 
 ## 本地预览
 

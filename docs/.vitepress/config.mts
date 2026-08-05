@@ -4,8 +4,8 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 export default withMermaid(
   defineConfig({
     lang: 'zh-CN',
-    title: 'Legacy 交接文档',
-    description: '项目概况、问题排查与经验总结',
+    title: '项目接手手册',
+    description: '面向接手人的项目关系、排查、发布与验收手册',
     cleanUrls: true,
     lastUpdated: true,
     themeConfig: {
@@ -14,17 +14,35 @@ export default withMermaid(
       lastUpdated: { text: '最后更新' },
       docFooter: { prev: '上一页', next: '下一页' },
       nav: [
-        { text: '项目概况', link: '/project-overview' },
-        { text: '问题排查', link: '/troubleshooting' },
-        { text: '经验总结', link: '/lessons' }
+        { text: '项目地图', link: '/project-overview' },
+        { text: '易哈佛前台', link: '/ehafo-frontend/overview' },
+        { text: '疑难排查', link: '/ehafo-frontend/troubleshooting' },
+        { text: '小护排班', link: '/schedule/overview' }
       ],
       sidebar: [
         {
-          text: '交接文档',
+          text: '总览',
           items: [
-            { text: '项目概况', link: '/project-overview' },
-            { text: '问题排查', link: '/troubleshooting' },
-            { text: '经验总结', link: '/lessons' }
+            { text: '接手导读', link: '/project-overview' }
+          ]
+        },
+        {
+          text: '易哈佛前台',
+          collapsed: false,
+          items: [
+            { text: '项目概况', link: '/ehafo-frontend/overview' },
+            { text: '仓库与系统关系', link: '/ehafo-frontend/repositories' },
+            { text: 'MP 与 subproject', link: '/ehafo-frontend/mp-and-subprojects' },
+            { text: 'A/B 测试', link: '/ehafo-frontend/ab-testing' },
+            { text: '问题排查', link: '/ehafo-frontend/troubleshooting' },
+            { text: '测试、验收与项目经验', link: '/ehafo-frontend/lessons' }
+          ]
+        },
+        {
+          text: '小护排班',
+          collapsed: false,
+          items: [
+            { text: '项目概况与发布', link: '/schedule/overview' }
           ]
         }
       ]
