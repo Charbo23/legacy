@@ -1,12 +1,13 @@
 # 项目接手手册
 
-范围：易哈佛前台、小护排班和本人负责的关联仓库，以及项目内高频工作流提示词。
+范围：易哈佛前台、team-agent-config、小护排班和本人负责的关联仓库，以及项目内高频工作流提示词。
 用途：帮助接手人员用自然语言驱动 Agent 完成开发，并掌握项目特有的判断、疑难排查和验收方法。
 边界：具体实现、构建步骤和完整踩坑说明以源仓为准；本手册只保留必要关系和事实源入口。
 
 阅读顺序：
 1. 逻辑项目范围：/project-overview
 2. 易哈佛前台：/ehafo-frontend/overview、/ehafo-frontend/repositories、/ehafo-frontend/mp-and-subprojects、/ehafo-frontend/ab-testing、/ehafo-frontend/troubleshooting、/ehafo-frontend/lessons
-3. 小护排班：/schedule/overview
+3. team-agent-config：/team-agent-config/overview
+4. 小护排班：/schedule/overview
 
 优先读取问题排查和高频工作流，不要先生成项目代码百科。不要把源码推断写成已确认规则，也不要记录凭据、用户身份或生产日志原文。

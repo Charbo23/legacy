@@ -7,7 +7,8 @@
 1. [项目地图](docs/project-overview.md)
 2. [易哈佛前台](docs/ehafo-frontend/overview.md)
 3. [易哈佛前台：问题排查](docs/ehafo-frontend/troubleshooting.md)
-4. 专项需要时再读 [MP 与 subproject](docs/ehafo-frontend/mp-and-subprojects.md) 或[小护排班](docs/schedule/overview.md)
+4. [team-agent-config](docs/team-agent-config/overview.md)
+5. 专项需要时再读 [MP 与 subproject](docs/ehafo-frontend/mp-and-subprojects.md) 或[小护排班](docs/schedule/overview.md)
 
 ## 本地预览
 

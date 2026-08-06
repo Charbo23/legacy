@@ -16,6 +16,7 @@ export default withMermaid(
       nav: [
         { text: '项目地图', link: '/project-overview' },
         { text: '易哈佛前台', link: '/ehafo-frontend/overview' },
+        { text: 'team-agent-config', link: '/team-agent-config/overview' },
         { text: '疑难排查', link: '/ehafo-frontend/troubleshooting' },
         { text: '小护排班', link: '/schedule/overview' }
       ],
@@ -36,6 +37,13 @@ export default withMermaid(
             { text: 'A/B 测试', link: '/ehafo-frontend/ab-testing' },
             { text: '问题排查', link: '/ehafo-frontend/troubleshooting' },
             { text: '测试、验收与项目经验', link: '/ehafo-frontend/lessons' }
+          ]
+        },
+        {
+          text: 'team-agent-config',
+          collapsed: false,
+          items: [
+            { text: '项目概况', link: '/team-agent-config/overview' }
           ]
         },
         {
