@@ -2,6 +2,17 @@
 
 自研统计是前台的关键基建，负责把页面访问、点击和业务事件送入统计分析系统。它不是 PageSpy，也不是异常日志；排查“事件有没有上报”与排查“业务请求是否报错”要分开处理。
 
+## 涉及仓库与入口
+
+| 仓库 / 入口 | 作用 | 核心位置 |
+| --- | --- | --- |
+| [ehafo-quiz](https://github.com/ehafo/ehafo-quiz) | 业务埋点、项目适配、v2 接收接口 | `frontends/app/v5_src/static/js/libs/new_track/`、`common_track_report.js`、`backend/client/api/track/events.py` |
+| [ehafo-front-lib](https://github.com/ehafo/ehafo-front-lib) | 通用采集和批量上报 SDK | `src/track/` |
+| [phpcrontab](https://github.com/ehafo/phpcrontab) | 消费队列、建立事件关系、存储和汇总 | `crontab/multiProcessService/track/` |
+| [自研统计事件后台](https://biz-admin.dinice.cn/event_dashboard) | 查询事件、字段和统计结果 | `event_dashboard` |
+
+`ehafo-front-lib` 是公共 SDK，quiz 的 `new_track` 是项目适配层；后端没有供业务代码直接调用的另一套 SDK。
+
 ## 处理顺序
 
 1. 业务代码通过 `TrackSDK` 手动调用，或在元素上声明自动埋点属性。
@@ -53,21 +64,6 @@ window.commonTracker && window.commonTracker.trackCustom('video_play', {
 | 业务参数 | `extra` 中的自定义键值，会成为后台可筛选属性；每个值保持扁平、短小，避免传对象、数组或长文本 |
 
 后台显示名称可能来自事件配置，未传 `page_name` 等展示字段时可以通过 ID 反查；因此开发时优先保证 ID、类型和上下文正确。
-
-## SDK 与源码位置
-
-| 层 | 事实源 | 作用 |
-| --- | --- | --- |
-| 通用前端库 | [GitHub `ehafo/ehafo-front-lib`](https://github.com/ehafo/ehafo-front-lib) | `src/track/base.js` 采集事件，`src/track/request.js` 处理公共参数、环境信息、批量/立即发送，`src/track/index.js` 导出 `TrackBase`、`TrackRequest`、`createTracker`；Rollup 的 `track` 入口产出 `EhafoLibTrack` UMD |
-| quiz 事件层 | [ehafo/ehafo-quiz](https://github.com/ehafo/ehafo-quiz) 的 `frontends/app/v5_src/static/js/libs/new_track/` | `TrackSDK` 提供页面、点击、自定义、公共事件 API 和自动点击属性 |
-| quiz 适配层 | 同仓 `frontends/app/v5_src/static/js/libs/common_track_report.js` | 加载两个前端库、填充用户/渠道/系统公共字段，把 `TrackSDK` 事件交给 `EhafoLibTrack.TrackRequest`，并设置 v2 地址 |
-| 请求封装 | 同仓 `frontends/app/v5_src/static/js/core/utils/network_utils.js` | `requestTrackEventsApi` 是统一的 v2 请求封装；接口迁移测试也以此为准 |
-| 接收与入队 | 同仓 `backend/client/api/track/events.py`、`backend/client/services/home_aux_service.py` | 接收 JSON 或表单的 `postdata`，过滤非法行后写入 `track:stats:reports` |
-| 消费与汇总 | [ehafo/phpcrontab](https://github.com/ehafo/phpcrontab) 的 `crontab/multiProcessService/track/StatsReport.php` 及同目录汇总任务 | 事件关系、字段值、原始 Mongo 集合和日/小时数据 |
-
-公共库的源仓是 `ehafo-front-lib`；quiz 中的 `new_track` 是当前业务适配/编译侧，不应把两者当成同一个文件夹维护。
-
-后端没有另一个需要在业务代码中直接调用的“统计 SDK”；接入点就是 quiz 的 v2 路由和服务层，异步消费、存储和汇总分别在 `phpcrontab` 中完成。
 
 ## 使用与排查
 
