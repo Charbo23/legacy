@@ -13,4 +13,4 @@
 9. 不记录凭据、客户隐私、用户 UID、PageSpy 原文、截图、视频或生产日志。
 10. PageSpy 具体操作以 `ehafo-quiz/.codex/skills/debug-with-pagespy/SKILL.md` 为入口，不在本仓复制 SOP。
 
-验证命令：`npm run docs:build`。
+验证命令：`npm run docs:build`。需要生成可离线传阅的单文件文档时运行 `npm run docs:single`，产物为 `dist/legacy-handover.md`。

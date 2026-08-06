@@ -18,3 +18,5 @@ npm run docs:dev
 ```
 
 构建验证：`npm run docs:build`。文档中不记录密码、Token、客户隐私或生产日志原文。
+
+需要离线传阅或归档时，运行 `npm run docs:single`，生成汇总全部正式页面的 `dist/legacy-handover.md`。该文件保留 Mermaid 源码、文档内目录和锚点，可直接交给 Markdown 编辑器或 Agent 使用，不需要启动文档站。
