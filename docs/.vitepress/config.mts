@@ -35,6 +35,7 @@ export default withMermaid(
             { text: '仓库与系统关系', link: '/ehafo-frontend/repositories' },
             { text: 'MP 与 subproject', link: '/ehafo-frontend/mp-and-subprojects' },
             { text: 'A/B 测试', link: '/ehafo-frontend/ab-testing' },
+            { text: '自研统计', link: '/ehafo-frontend/tracking' },
             { text: '问题排查', link: '/ehafo-frontend/troubleshooting' },
             { text: '测试、验收与项目经验', link: '/ehafo-frontend/lessons' }
           ]

@@ -20,7 +20,12 @@
 | [Codeup `ehafo/miniproject/machine_exam`](https://codeup.aliyun.com/ehafo/miniproject/machine_exam) | 人机对话 subproject 源码 |
 | [Codeup `ehafo/miniproject/performanceAppraisal`](https://codeup.aliyun.com/ehafo/miniproject/performanceAppraisal) | 内部考核 subproject 源码 |
 | [Codeup `ehafo/miniproject/epaper`](https://codeup.aliyun.com/ehafo/miniproject/epaper) | 电子试卷 subproject 源码 |
-| Codeup 独立项目 `web_course` | AI 课程播放器源码；不与三个 subproject 共用运行时，构建结果复制到 `ehafo-quiz` |
+| [Codeup 独立项目 `web_course`](https://codeup.aliyun.com/ehafo/miniproject/web_course) | AI 课程播放器源码 |
+
+### ehafo-front-lib
+
+- [GitHub 镜像 `ehafo/ehafo-front-lib`](https://github.com/ehafo/ehafo-front-lib)；[Codeup 源仓 `ehafo/yihafo/ehafo-front-lib`](https://codeup.aliyun.com/ehafo/yihafo/ehafo-front-lib)。
+- 前端公共方法库，其中 `src/track/` 是自研统计的通用 SDK；统计链路和使用边界见[自研统计](./tracking.md)。
 
 三个 `miniproject` 源码仓对应现在所称的 `subproject`；`web_course` 是独立项目。代码位置、产物目录和运行时差异统一见[MP 与 subproject](./mp-and-subprojects.md)。
 

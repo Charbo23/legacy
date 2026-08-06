@@ -11,6 +11,7 @@
 | 判断改哪个仓库或哪个运行载体 | [仓库与系统关系](./repositories.md) |
 | 当前 MP、人机对话、内部考核、电子试卷或 AI 课程 | [MP 与 subproject](./mp-and-subprojects.md) |
 | 分流、放量或收口 | [A/B 测试](./ab-testing.md) |
+| 埋点接入、事件缺失或统计看板 | [自研统计](./tracking.md) |
 | 用户反馈、偶现问题或跨端异常 | [问题排查](./troubleshooting.md) |
 | 需求开发、页面测试与最终验收 | [测试、验收与项目经验](./lessons.md) |
 
@@ -28,6 +29,7 @@ flowchart LR
     Q --> M[当前 MP<br/>mp-nexus 管理版本]
     Q --> U[subproject<br/>人机对话 / 内部考核 / 电子试卷]
     Q --> C[web_course<br/>独立 AI 课程播放器产物]
+    Q --> L[ehafo-front-lib<br/>前端公共库与统计 SDK]
 ```
 
 这里先区分两个不能混淆的维度：

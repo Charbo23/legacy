@@ -13,6 +13,7 @@ const pages = [
   { file: 'ehafo-frontend/repositories.md', title: '易哈佛前台：仓库与系统关系' },
   { file: 'ehafo-frontend/mp-and-subprojects.md', title: '易哈佛前台：MP 与 subproject' },
   { file: 'ehafo-frontend/ab-testing.md', title: '易哈佛前台：A/B 测试' },
+  { file: 'ehafo-frontend/tracking.md', title: '易哈佛前台：自研统计' },
   { file: 'ehafo-frontend/troubleshooting.md', title: '易哈佛前台：问题排查' },
   { file: 'ehafo-frontend/lessons.md', title: '易哈佛前台：测试、验收与项目经验' },
   { file: 'team-agent-config/overview.md', title: 'team-agent-config：项目概况' },
