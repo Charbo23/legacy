@@ -39,6 +39,6 @@ A/B 用于让同一用户路径在两套可比较实现之间受控切换。本�
 | 内容 | 位置 |
 | --- | --- |
 | 配置获取与分流算法 | `ehafo-quiz/frontends/app/v5_src/static/js/core/common/index.js`：`getAbTestConfig`、`getAbTestDivision` |
-| 分流缓存初始值 | `frontends/app/v5_src/variable_defined.js`：`window.abTestDivisionList` |
-| 请求携带分组结果 | `frontends/app/v5_src/static/js/core/utils/network_utils.js`：`__abtest_result` |
-| 页面级 A/B 构建 | `frontends/app/v5_src/route.config.js`、`scripts/ci_src/v5/route_conf.ts` |
+| 分流缓存初始值 | `ehafo-quiz/frontends/app/v5_src/variable_defined.js`：`window.abTestDivisionList` |
+| 请求携带分组结果 | `ehafo-quiz/frontends/app/v5_src/static/js/core/utils/network_utils.js`：`__abtest_result` |
+| 页面级 A/B 构建 | `ehafo-quiz/frontends/app/v5_src/route.config.js`、`ehafo-quiz/scripts/ci_src/v5/route_conf.ts` |

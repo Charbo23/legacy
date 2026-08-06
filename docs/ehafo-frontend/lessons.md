@@ -4,9 +4,7 @@
 
 ## 高频工作流提示词
 
-下面保留的是接近实际使用的短句。具体源码入口、测试层级和排查约束已经在本页及相关页面说明，不需要每次重复写进 prompt。
-
-从 `hooks_ci.stats_prompts` 中的个人记录看，常见写法是先说“看下 / 处理 / 继续 / 修复 / 测试”这类动作，再补一个当前现象、分支、用户或验收要求；很多上下文来自连续对话、附件和已启用的 skill，而不是每次重新写一遍项目背景。后续提示词保持这个粒度即可。
+实际使用时通常只需说明动作、现象和验收要求；项目背景由 Agent 从仓库 `AGENTS.md`、本手册和当前对话获取，不必把完整流程重复写进 prompt。
 
 | 场景 | 可直接使用的提示词 |
 | --- | --- |
@@ -17,15 +15,26 @@
 | 端上验收 | “这个功能在微信开发者工具和真机上都验一下，重点看样式、交互和启动链路。” |
 | 上线收口 | “按正常流程上线观察，3 天没问题后把 A/B 清掉并收口。” |
 
+## Agent 开发工作流
+
+| 阶段 | 项目内做法 | 容易踩坑 |
+| --- | --- | --- |
+| 定位 | 先确认运行载体和环境，再从[仓库关系](./repositories.md)找到源码仓；MP、SP 和 `web_course` 先看[专页](./mp-and-subprojects.md) | 在主仓编译产物上直接改代码，或把 MP、SP、普通 H5 当成同一套入口 |
+| 理解 | 让 Agent 先读目标仓 `AGENTS.md`、相关 README 和同类实现，只把本手册作为跨仓关系入口 | 把手册中的概括当成最新函数或构建参数，跳过源仓事实源 |
+| 实现 | 修改源码并保持旧版 App 和其他载体可用；涉及 A/B 时从开始就约定收口方式 | 只验证当前端或 B 分支，遗漏旧版、缓存、重试和网关切换 |
+| 快速验证 | 先跑与 diff 对应的 E2E 或最小测试，再按[三层测试](#三层测试如何选择)升级到微信工具或 ADB | 只跑固定 smoke，或用浏览器结果代替微信能力和真机启动验收 |
+| 交付检查 | 核对真实入口、资源哈希和 `git diff`，恢复临时 session、调试配置和测试数据 | 代码已提交或 CI 成功就认为用户已命中新版本；把临时配置留进提交 |
+| 疑难问题 | 交给 Agent 按[问题排查](./troubleshooting.md)合并现场与日志，缺证据时只补有区分力的观测 | 没有证据就连续猜修，或同时改重试、缓存、超时和网关导致无法判因 |
+
 ## 三层测试如何选择
 
 | 层级 | 使用时机 | 事实源 |
 | --- | --- | --- |
-| Playwright | 普通页面、路由、请求、渲染和性能的快速回归；代码完成后的默认起点 | `ehafo-quiz/frontends/app/e2e/README.md`、`e2e/agent-protocol.md` |
+| Playwright | 普通页面、路由、请求、渲染和性能的快速回归；代码完成后的默认起点 | `ehafo-quiz/frontends/app/e2e/README.md`、`ehafo-quiz/frontends/app/e2e/agent-protocol.md` |
 | Agent 操控微信开发者工具 | 微信能力、最终样式、弹层、返回、滚动和分享交互 | 按真实用户路径操作，不用脚本调用替代最终界面验收 |
 | ADB 真机 | App 启动、前后台恢复、WebView、原生桥、离线能力和疑难问题 | `ehafo-quiz/frontends/app/e2e/offline-startup-acceptance.md`、`ehafo_android_app/AGENTS.md` |
 
-需要观察远程 WebView 现场时使用 PageSpy，具体操作只读 `ehafo-quiz/.codex/skills/debug-with-pagespy/SKILL.md`。运行时性能专项读 `frontends/app/e2e/runtime-performance-acceptance.md`。
+需要观察远程 WebView 现场时使用 PageSpy，具体操作只读 `ehafo-quiz/.codex/skills/debug-with-pagespy/SKILL.md`。运行时性能专项读 `ehafo-quiz/frontends/app/e2e/runtime-performance-acceptance.md`。
 
 ## 验收原则
 
@@ -35,19 +44,15 @@
 - Playwright 的固定 smoke 只证明 E2E 底座可用，本次需求仍要按 diff 动态验收。
 - 不自动触发支付、下单、提交答案、评论、删除、验证码等有副作用的操作。
 
-## A/B
-
-分流配置、放量、缓存影响和收口规则统一见[A/B 测试](./ab-testing.md)，本页不再重复。
-
 ## 已知坑只记入口
 
 | 主题 | 接手时先看 |
 | --- | --- |
-| 环境、入口与两条构建链 | [项目概况](./overview.md#运行环境与入口)；构建细节见 `ehafo-quiz/docs/前端H5构建与CI.md` 和 `plans/handoff.md` |
+| 环境、入口与两条构建链 | [项目概况](./overview.md#运行环境与入口)；构建细节见 `ehafo-quiz/docs/前端H5构建与CI.md` 和 `ehafo-quiz/plans/handoff.md` |
 | App 离线启动、缓存与恢复 | `ehafo-quiz/frontends/app/e2e/offline-startup-acceptance.md` |
 | PageSpy 远程调试 | `ehafo-quiz/.codex/skills/debug-with-pagespy/SKILL.md` |
 | Android 设备、安装和 ADB | `ehafo_android_app/AGENTS.md` |
 | MP 与 subproject | [MP 与 subproject](./mp-and-subprojects.md) |
+| A/B 放量和收口 | [A/B 测试](./ab-testing.md) |
 | PC 壳差异 | [仓库与系统关系：PC 打包仓](./repositories.md#pc-打包仓) |
-
-DCloud 应用转让、构建权限和协作者变更属于实际离职交接时的外部权限事项，本手册只记录相关权限边界。PC Electron 仓历史中出现过明文 Apple 公证凭据，进入 Git 历史即视为泄漏，必须在 Apple 侧轮换，不能只删除当前文档。
+| DCloud 构建权限 | [仓库与系统关系：DCloud 权限边界](./repositories.md#dcloud-权限边界) |

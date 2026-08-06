@@ -54,10 +54,10 @@ PageSpy 后台为 <https://spy.dinice.cn/#/log-list>，具体操作只读 `ehafo
 
 | 现象 | 第一判断 | 使用手段或事实源 |
 | --- | --- | --- |
-| 普通页面、路由或接口异常 | 先在相同环境用真实登录态稳定复现 | Playwright；`frontends/app/e2e/agent-protocol.md` |
+| 普通页面、路由或接口异常 | 先在相同环境用真实登录态稳定复现 | Playwright；`ehafo-quiz/frontends/app/e2e/agent-protocol.md` |
 | 微信分享、返回或样式异常 | 是否只在微信容器出现 | Agent 操控微信开发者工具走真实点击路径 |
 | 远程 WebView 偶现异常 | 是否能让测试人员打开在线调试 | PageSpy skill；可实时看日志、发指令和执行 `evalJS` |
-| Android 启动、恢复、原生桥异常 | Web 代码是否已部署到至少 DEV，包体环境是否匹配 | ADB；`ehafo_android_app/AGENTS.md`、`e2e/offline-startup-acceptance.md` |
+| Android 启动、恢复、原生桥异常 | Web 代码是否已部署到至少 DEV，包体环境是否匹配 | ADB；`ehafo_android_app/AGENTS.md`、`ehafo-quiz/frontends/app/e2e/offline-startup-acceptance.md` |
 | MP/subproject 打不开或身份丢失 | 最终 URL、目录 `/`、`sessionid`、`_v` 和 WebView 是否正确 | [MP 与 subproject](./mp-and-subprojects.md) |
 | PC 用户异常 | 实际是普通浏览器、NW.js 还是 Electron | [PC 打包仓识别方法](./repositories.md#pc-打包仓) |
 
@@ -73,7 +73,7 @@ ADB 理论上可修改包内入口连接本地地址，但证书、路由、跨�
 
 ### 离线资源
 
-先核对 `uid + resourceVersion + definition` 的隔离，再检查预期大小、内容哈希和续传标识。退出登录后缓存可保留，但当前账号不能看到其他账号资源。完整启动与缓存验收见 `frontends/app/e2e/offline-startup-acceptance.md`。
+先核对 `uid + resourceVersion + definition` 的隔离，再检查预期大小、内容哈希和续传标识。退出登录后缓存可保留，但当前账号不能看到其他账号资源。完整启动与缓存验收见 `ehafo-quiz/frontends/app/e2e/offline-startup-acceptance.md`。
 
 ### 网关
 

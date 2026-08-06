@@ -2,16 +2,17 @@
 
 ## 项目定位
 
-易哈佛前台是需要优先掌握的核心逻辑项目。主要业务实现位于 `ehafo-quiz`，同一套 H5/Web 业务运行在普通浏览器、Android 与 iOS App WebView、Harmony、微信和 PC 壳中；当前 MP、由早期 MP 演化出的 subproject、独立 AI 课程播放器产物、Android 壳、分享图片服务和 PC 打包仓承担各自的关联职责。
+易哈佛前台是需要优先掌握的核心逻辑项目。主要业务位于 `ehafo-quiz`，并由 MP、subproject、原生壳和次级服务共同支撑；具体仓库落点见[仓库与系统关系](./repositories.md)。
 
-## 项目关注点
+## 按任务进入
 
-- 根据部署环境和运行载体找到正确入口、构建产物与验证方式。
-- 业务与接口变更如何兼容各端及旧版 App。
-- 用户疑难问题如何结合现场信息、线上异常日志和设备调试定位。
-- A/B 如何放量、观察和彻底收口。
-- 离线媒体、弱网、网关切换、WebView 生命周期等跨端问题如何判断。
-- 页面改动如何按 Playwright、微信开发者工具、ADB 三层测试，并对做题、支付、分享等关键链路完成人工验收。
+| 当前任务 | 阅读入口 |
+| --- | --- |
+| 判断改哪个仓库或哪个运行载体 | [仓库与系统关系](./repositories.md) |
+| 当前 MP、人机对话、内部考核、电子试卷或 AI 课程 | [MP 与 subproject](./mp-and-subprojects.md) |
+| 分流、放量或收口 | [A/B 测试](./ab-testing.md) |
+| 用户反馈、偶现问题或跨端异常 | [问题排查](./troubleshooting.md) |
+| 需求开发、页面测试与最终验收 | [测试、验收与项目经验](./lessons.md) |
 
 ## 组成关系
 
@@ -42,7 +43,7 @@ flowchart LR
 
 | 环境 | 用途 | 主要入口 | 构建形态 |
 | --- | --- | --- | --- |
-| 本地联调 | 本机开发与前后端联调 | `https://quiz-local.dev.ehafo.com/entry.html` | `scripts/dev.sh up` 准备本地域名；前台走 `build:dev` |
+| 本地联调 | 本机开发与前后端联调 | `https://quiz-local.dev.ehafo.com/entry.html` | `ehafo-quiz/scripts/dev.sh up` 准备本地域名；前台走 `build:dev` |
 | DEV | 日常测试 | `https://quiz.dev.yiqizuoti.com/entry.html` | `build:dev`，资源按文件展开 |
 | preview | 验收 App、微信和 Harmony 渠道产物 | `https://tiku-v5.dev.yihafo.com/entry.<载体>.html` | CI `build:v52`，内容哈希产物 |
 | hotfix | 修复环境验证 | 同 preview 域名，入口为 `entry-<载体>-hotfix.html` | CI `build:v52`，内容哈希产物 |
@@ -51,10 +52,6 @@ flowchart LR
 载体入口中的 `<载体>` 为 `app`、`wx` 或 `harmony`。`entry.app.html` 同时服务 Android 和 iOS App WebView；它不是单独的 iOS 环境。微信线上跳转在部分运行路径中会先进入 `https://quiz.yihafo.com/?module=quiz`。
 
 本地 `pnpm run build:prod` 是 Node 构建链的生产模式校验命令，不等同于 App、微信、Harmony 的线上 CI 发布链；后者使用 `build:v52`，且不应在普通开发 worktree 中直接运行。
-
-## 查阅路径
-
-改代码前先到[仓库与系统关系](./repositories.md)确认改动落在哪个仓库；涉及 MP、人机对话、内部考核或电子试卷时读取[MP 与 subproject](./mp-and-subprojects.md)；涉及分流、放量和收口时读取[A/B 测试](./ab-testing.md)；收到用户反馈时进入本项目的[问题排查](./troubleshooting.md)；代码完成后按[测试、验收与项目经验](./lessons.md#三层测试如何选择)选择测试层级。
 
 ## 范围边界
 

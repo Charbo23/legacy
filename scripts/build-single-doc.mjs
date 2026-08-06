@@ -51,7 +51,10 @@ function slugify(value) {
 }
 
 function resolveDocumentTarget(sourceFile, rawTarget) {
-  if (/^(?:[a-z]+:|#)/i.test(rawTarget)) return null
+  if (/^[a-z]+:/i.test(rawTarget)) return null
+  if (rawTarget.startsWith('#')) {
+    return `#${pageIds.get(sourceFile)}-${slugify(rawTarget.slice(1))}`
+  }
 
   const [rawPath, rawFragment] = rawTarget.split('#', 2)
   const targetFile = rawPath.startsWith('/')

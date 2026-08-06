@@ -5,15 +5,12 @@
 ### ehafo-quiz
 
 - [GitHub `ehafo/ehafo-quiz`](https://github.com/ehafo/ehafo-quiz)，默认分支 `main`。
-- 承载主要 H5/Web 业务，也是普通浏览器、App WebView、Harmony、微信和 PC 壳共同加载或复用的前台实现。
-- 重点关注接口迁移、A/B、离线与弱网、跨端兼容、问题定位和验收。
-- 本地开发使用 `scripts/dev.sh up`，其他命令和约束以仓库内 `AGENTS.md` 为准。
+- 承载主要 H5/Web 业务，浏览器、App WebView、Harmony、微信和 PC 壳共同加载或复用其页面。开发入口、命令和约束以仓库 `AGENTS.md` 为准。
 
 ### ehafo_android_app
 
 - [GitHub `ehafo/ehafo_android_app`](https://github.com/ehafo/ehafo_android_app)，默认分支 `master`。
-- Android DCloud 壳仓，负责启动与恢复、WebView 生命周期、原生桥、离线媒体、环境和包体行为。
-- Web 功能依赖原生能力时，需要同时核对这里的实现和旧版兼容。
+- Android DCloud 壳仓，负责启动与恢复、WebView 生命周期、原生桥、离线媒体和包体行为。涉及原生能力时读取仓库 `AGENTS.md` 并核对旧版兼容。
 
 ### MP 与 subproject 源码仓
 
@@ -25,16 +22,14 @@
 | [Codeup `ehafo/miniproject/epaper`](https://codeup.aliyun.com/ehafo/miniproject/epaper) | 电子试卷 subproject 源码 |
 | Codeup 独立项目 `web_course` | AI 课程播放器源码；不与三个 subproject 共用运行时，构建结果复制到 `ehafo-quiz` |
 
-三个 `miniproject` 路径是旧命名遗留；它们属于后来更名的 `subproject`。`web_course` 是独立项目，不属于这套兼容运行时。两类项目都只把编译结果放入 `ehafo-quiz`，完整关系见[MP 与 subproject](./mp-and-subprojects.md)。
+三个 `miniproject` 源码仓对应现在所称的 `subproject`；`web_course` 是独立项目。代码位置、产物目录和运行时差异统一见[MP 与 subproject](./mp-and-subprojects.md)。
 
 ## 次级仓库与平台
 
 ### screenshot_server
 
 - [Codeup `ehafo/yihafo/screenshot_server`](https://codeup.aliyun.com/ehafo/yihafo/screenshot_server)，默认分支 `master`。
-- 用于把 Web 分享页渲染成图片。`ehafo-quiz` 把任务写入 `poster:generate:share_img`，常驻任务调用 `/add_screenshot_task`，完成后回调 `App.Share.DealCommonPoster`。
-- `/screenshot` 是同步入口，分享海报使用异步入口；页面通过 `window.pageLoadState` 通知截图时机。
-- 本页只记录其业务用途和调用关系；部署、进程、服务器更新及日志查看由架构团队负责。
+- 用于把 Web 分享页渲染成图片。分享链路为 `ehafo-quiz` 写入任务、服务端截图、完成后回调；接口与队列名以两端源码为准。部署、进程和服务器日志由架构团队负责。
 
 ### PC 打包仓
 
@@ -52,7 +47,7 @@ PC 端不是独立业务实现，而是由 Windows 和 macOS 两个桌面壳加�
 3. NW.js 应命中 `nw`，Electron 应命中 `nodeRequire`；两者都没有时只是普通 PC 浏览器。
 4. 最后回到对应仓的入口、版本和打包配置复现；若要确认历史包，仍以实际安装包或下载物为准。
 
-Web 侧兼容入口见 `ehafo-quiz/frontends/app/v5_src/static/js/core/common/pc.js`，PC 身份判断见 `frontends/app/v5_src/window_defined.js`。修改 PC 行为时优先改 Web 公共逻辑，并至少分别验证 NW.js 和 Electron 的外链打开、下载、视频与缓存恢复。
+Web 侧兼容入口见 `ehafo-quiz/frontends/app/v5_src/static/js/core/common/pc.js`，PC 身份判断见 `ehafo-quiz/frontends/app/v5_src/window_defined.js`。修改 PC 行为时优先改 Web 公共逻辑，并至少分别验证 NW.js 和 Electron 的外链打开、下载、视频与缓存恢复。
 
 ## DCloud 权限边界
 

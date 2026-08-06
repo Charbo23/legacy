@@ -10,7 +10,7 @@
 | [team-agent-config](./team-agent-config/overview.md) | 工具基础 | 团队 AI Coding 工具配置同步、个人工具落地和配置贡献回流 |
 | [小护排班](./schedule/overview.md) | 专项 | 微信小程序源码修改、构建和发布 |
 
-易哈佛前台不是单一仓库：[ehafo-quiz](https://github.com/ehafo/ehafo-quiz) 承载主要业务和独立前端产物，[mp-nexus](https://github.com/ehafo/mp-nexus) 管理当前 MP，人机对话、内部考核和电子试卷由独立 subproject 源码仓维护，[ehafo_android_app](https://github.com/ehafo/ehafo_android_app)、[screenshot_server](https://codeup.aliyun.com/ehafo/yihafo/screenshot_server) 和各 PC 打包仓分别解决不同终端或支撑场景。各仓库的业务关系和使用方式以对应项目页及源仓事实为准，部署运维仍由对应团队负责。
+易哈佛前台涉及多个源码仓和运行载体，职责与调用关系统一见[仓库与系统关系](./ehafo-frontend/repositories.md)，本页不重复展开。
 
 ## 无需接手的范围
 
