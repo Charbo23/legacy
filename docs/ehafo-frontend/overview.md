@@ -4,6 +4,23 @@
 
 易哈佛前台是需要优先掌握的核心逻辑项目。主要业务位于 `ehafo-quiz`，并由 MP、subproject、原生壳和次级服务共同支撑；具体仓库落点见[仓库与系统关系](./repositories.md)。
 
+## 仓库速览
+
+先按“要改什么”找仓库，不要把所有仓库都当作同一套前台源码：
+
+| 仓库 / 产物 | 作用 |
+| --- | --- |
+| [ehafo-quiz](https://github.com/ehafo/ehafo-quiz) | Web 主业务、跨端页面、MP 产物和 subproject 集成点 |
+| [ehafo_android_app](https://github.com/ehafo/ehafo_android_app) | Android DCloud 壳、启动链路和原生能力 |
+| [mp-nexus](https://github.com/ehafo/mp-nexus) | 当前 MP 的版本管理、预览和发布后台 |
+| [machine_exam](https://codeup.aliyun.com/ehafo/miniproject/machine_exam)、[performanceAppraisal](https://codeup.aliyun.com/ehafo/miniproject/performanceAppraisal)、[epaper](https://codeup.aliyun.com/ehafo/miniproject/epaper) | 人机对话、内部考核、电子试卷 subproject 源码 |
+| [web_course](https://codeup.aliyun.com/ehafo/miniproject/web_course) | AI 课程播放器源码 |
+| [ehafo-front-lib](https://github.com/ehafo/ehafo-front-lib) | 前端公共库和自研统计 SDK |
+| [screenshot_server](https://codeup.aliyun.com/ehafo/yihafo/screenshot_server) | 分享图片生成服务 |
+| [tikupc](https://codeup.aliyun.com/ehafo/yihafo/tikupc)、[tiku_mac](https://codeup.aliyun.com/ehafo/app/tiku_mac) | Windows、macOS PC 壳打包仓 |
+
+详细目录、产物位置和运行时边界见[仓库与系统关系](./repositories.md)。
+
 ## 按任务进入
 
 | 当前任务 | 阅读入口 |
@@ -15,22 +32,7 @@
 | 用户反馈、偶现问题或跨端异常 | [问题排查](./troubleshooting.md) |
 | 需求开发、页面测试与最终验收 | [测试、验收与项目经验](./lessons.md) |
 
-## 组成关系
-
-```mermaid
-flowchart LR
-    Q[ehafo-quiz<br/>H5 / Web 业务] --> B[普通浏览器]
-    Q --> A[App WebView<br/>Android / iOS]
-    Q --> H[Harmony]
-    Q --> W[微信]
-    Q --> P[PC 壳<br/>复用 Web 页面]
-    A --> D[ehafo_android_app<br/>Android DCloud 壳]
-    Q --> S[screenshot_server<br/>分享图片生成]
-    Q --> M[当前 MP<br/>mp-nexus 管理版本]
-    Q --> U[subproject<br/>人机对话 / 内部考核 / 电子试卷]
-    Q --> C[web_course<br/>独立 AI 课程播放器产物]
-    Q --> L[ehafo-front-lib<br/>前端公共库与统计 SDK]
-```
+## 运行载体与环境
 
 这里先区分两个不能混淆的维度：
 
