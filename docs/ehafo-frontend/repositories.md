@@ -40,12 +40,12 @@
 
 PC 端不是独立业务实现，而是由 Windows 和 macOS 两个桌面壳加载 `ehafo-quiz` 的 `https://tiku.yihafo.com/?module=v4`。Web 侧通过 UA 中的 `ehafopc` 设置 `ispc=true`，再分别调用 NW.js 的 `nw` 或 Electron preload 暴露的 `nodeRequire`。
 
-| Codeup 仓库 | 源码能确认的定位 | 事实源 |
+| Codeup 仓库 | 当前定位 | 事实源 |
 | --- | --- | --- |
-| [`ehafo/yihafo/tikupc`](https://codeup.aliyun.com/ehafo/yihafo/tikupc) | Windows 版 NW.js 打包仓，包含 32/64 位和 Inno Setup 打包配置；仓内保留的早期 Mac 脚本不代表当前 Mac 发布入口 | 仓库 `README.md`、`appxs/package.json`、`windows_setup/` |
+| [`ehafo/yihafo/tikupc`](https://codeup.aliyun.com/ehafo/yihafo/tikupc) | Windows 版 NW.js 打包仓，包含 32/64 位和 Inno Setup 打包配置 | 仓库 `README.md`、`appxs/package.json`、`windows_setup/` |
 | [`ehafo/app/tiku_mac`](https://codeup.aliyun.com/ehafo/app/tiku_mac)（Codeup 显示为 `app/pc_mac`） | macOS 版 Electron 打包仓；`tikupc` 分支对应易哈佛考试，`kefupc` 分支对应咨询系统 | 仓库 `README.md`、对应分支的 `main.js` 与 `package.json` |
 
-`pcapp` 已废弃并删除，不再作为发布或问题排查入口。确认某个用户实际使用哪一套壳时：
+当前 PC 端只有以上两个打包入口。确认某个用户实际使用哪一套壳时：
 
 1. 先取得用户安装包或实际下载 URL，不只看仓库更新时间。
 2. 查看进程类型、应用名和 `appId`，再在页面控制台核对 `navigator.userAgent`、`typeof nw`、`typeof nodeRequire`。
