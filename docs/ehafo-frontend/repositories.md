@@ -24,7 +24,7 @@
 
 ### ehafo-front-lib
 
-- [GitHub 镜像 `ehafo/ehafo-front-lib`](https://github.com/ehafo/ehafo-front-lib)；[Codeup 源仓 `ehafo/yihafo/ehafo-front-lib`](https://codeup.aliyun.com/ehafo/yihafo/ehafo-front-lib)。
+- [GitHub `ehafo/ehafo-front-lib`](https://github.com/ehafo/ehafo-front-lib)。
 - 前端公共方法库，其中 `src/track/` 是自研统计的通用 SDK；统计链路和使用边界见[自研统计](./tracking.md)。
 
 三个 `miniproject` 源码仓对应现在所称的 `subproject`；`web_course` 是独立项目。代码位置、产物目录和运行时差异统一见[MP 与 subproject](./mp-and-subprojects.md)。

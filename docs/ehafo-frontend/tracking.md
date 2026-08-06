@@ -13,7 +13,7 @@ flowchart LR
     V --> Q[Redis track:stats:reports]
     Q --> P[phpcrontab StatsReport]
     P --> M[Mongo 原始事件与日/小时汇总]
-    M --> D[admin-vue3 新版统计看板]
+    M --> D[统计分析后台]
 ```
 
 当前 quiz 的通用事件入口是 v2 `track/events/batch`。Python 接口只负责解析、过滤、补充 IP/时间并入队；PHP 常驻任务再建立事件关系、写入按天集合并触发汇总。不要根据公共库 README 中的旧示例反推线上地址，实际地址以 `ehafo-quiz/frontends/app/v5_src/static/js/libs/common_track_report.js` 的适配逻辑为准。
@@ -44,13 +44,12 @@ window.commonTracker && window.commonTracker.trackCustom('video_play', {
 
 | 层 | 事实源 | 作用 |
 | --- | --- | --- |
-| 通用前端库 | [ehafo/ehafo-front-lib](https://github.com/ehafo/ehafo-front-lib)，[Codeup `ehafo/yihafo/ehafo-front-lib`](https://codeup.aliyun.com/ehafo/yihafo/ehafo-front-lib) | `src/track/base.js` 采集事件，`src/track/request.js` 处理公共参数、环境信息、批量/立即发送，`src/track/index.js` 导出 `TrackBase`、`TrackRequest`、`createTracker`；Rollup 的 `track` 入口产出 `EhafoLibTrack` UMD |
+| 通用前端库 | [GitHub `ehafo/ehafo-front-lib`](https://github.com/ehafo/ehafo-front-lib) | `src/track/base.js` 采集事件，`src/track/request.js` 处理公共参数、环境信息、批量/立即发送，`src/track/index.js` 导出 `TrackBase`、`TrackRequest`、`createTracker`；Rollup 的 `track` 入口产出 `EhafoLibTrack` UMD |
 | quiz 事件层 | [ehafo/ehafo-quiz](https://github.com/ehafo/ehafo-quiz) 的 `frontends/app/v5_src/static/js/libs/new_track/` | `TrackSDK` 提供页面、点击、自定义、公共事件 API 和自动点击属性 |
 | quiz 适配层 | 同仓 `frontends/app/v5_src/static/js/libs/common_track_report.js` | 加载两个前端库、填充用户/渠道/系统公共字段，把 `TrackSDK` 事件交给 `EhafoLibTrack.TrackRequest`，并设置 v2 地址 |
 | 请求封装 | 同仓 `frontends/app/v5_src/static/js/core/utils/network_utils.js` | `requestTrackEventsApi` 是统一的 v2 请求封装；接口迁移测试也以此为准 |
 | 接收与入队 | 同仓 `backend/client/api/track/events.py`、`backend/client/services/home_aux_service.py` | 接收 JSON 或表单的 `postdata`，过滤非法行后写入 `track:stats:reports` |
 | 消费与汇总 | [ehafo/phpcrontab](https://github.com/ehafo/phpcrontab) 的 `crontab/multiProcessService/track/StatsReport.php` 及同目录汇总任务 | 事件关系、字段值、原始 Mongo 集合和日/小时数据 |
-| 管理与分析 | [ehafo/admin-vue3](https://github.com/ehafo/admin-vue3) 的 `src/router/modules/independent.js` 和 `src/independentViews/track/` | 新版事件管理、事件详情、看板和图表配置 |
 
 公共库的源仓是 `ehafo-front-lib`；quiz 中的 `new_track` 是当前业务适配/编译侧，不应把两者当成同一个文件夹维护。
 
@@ -60,10 +59,9 @@ window.commonTracker && window.commonTracker.trackCustom('video_play', {
 
 线上后台：
 
-- [新版统计看板](https://admin.ehafo.com/new_track/statistics_dashboard)
-- [事件管理](https://admin.ehafo.com/new_track/event_list?hidden=1)
+- [自研统计事件后台](https://biz-admin.dinice.cn/event_dashboard)
 
-DEV 环境只替换为 `admin.dev.ehafo.com`，路径保持不变。看板用于按事件、属性、页面和时间范围分析；事件管理用于确认事件是否已被消费、名称和属性是否可筛选。修改事件埋点后，先在事件管理确认事件定义，再用一条真实操作验证看板数据。
+统计后台的使用说明可参考[这篇统计后台文章](https://admin-vue3.ehafo.com/ehafo_kanban/index?kanban_id=81&article_id=2957)，但文章内容可能随后台版本变化。实际使用时先进入事件后台选择事件和时间范围，再按属性、页面等维度筛选；修改埋点后先确认事件是否出现，再用一条真实操作验证数据。
 
 遇到“代码调用了但后台没有数据”时按链路判断：
 

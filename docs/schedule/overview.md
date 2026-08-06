@@ -2,7 +2,7 @@
 
 ## 项目范围
 
-- [Codeup `ehafo/yihafo/schedule`](https://codeup.aliyun.com/ehafo/yihafo/schedule)，默认分支 `master`。
+- [GitHub `ehafo/schedule`](https://github.com/ehafo/schedule)，默认分支 `master`。
 - Vue 2 时代的 uni-app 工程。
 - 实际交付只有微信小程序，不发布 H5，也不扩展其他端。
 - 本页只记录源码范围、构建入口和发布去向；具体业务规则按当期需求确认。
