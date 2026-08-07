@@ -37,7 +37,7 @@ SP 的入口 HTML 是各自构建产物，不走主仓普通页面的 `common_in
 
 ## web_course 例外
 
-`web_course` 不是第四个普通 SP。它来自 Codeup 独立项目，是 Vite + Vue 3 单页应用，不引用 quiz 的公共运行时或 utils。
+`web_course` 不是第四个普通 SP。它来自 Codeup 独立项目，是 Vite + Vue 3 单页应用，不引用 quiz 的公共运行时或 utils。Codeup 远程源码仓名称是 `ai_course`，`web_course` 是 `ehafo-quiz` 仓中的本地目录和产物名称；修改源码查远程 `ai_course`，回写主仓产物查 `subproject/app/web_course/`。
 
 quiz 的 `shop/videos.js` 在 AI 课程路径中创建 iframe，访问 `v5/subproject/app/web_course/index.html`；父页和播放器通过 `web_course_*` `postMessage` 事件传递初始化数据、播放状态、进度、全屏和错误信息。更新时应在独立源码项目完成构建，再用完整编译结果覆盖 `subproject/app/web_course/`，不能直接修改压缩后的 chunk，也不能套用三个 SP 的 uni-app 或兼容运行时处理方式。
 

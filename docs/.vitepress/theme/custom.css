@@ -1,0 +1,19 @@
+.vp-doc table {
+  width: 100%;
+}
+
+.vp-doc th,
+.vp-doc td {
+  min-width: 8rem;
+}
+
+.vp-doc th:first-child,
+.vp-doc td:first-child,
+.vp-doc th:first-child code,
+.vp-doc td:first-child code,
+.vp-doc th:first-child a,
+.vp-doc td:first-child a {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: normal;
+}
