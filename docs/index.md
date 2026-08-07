@@ -7,11 +7,11 @@ hero:
   tagline: 不背源码细节，找到项目事实源，用现有工具完成开发、排查与验收
   actions:
     - theme: brand
-      text: 查看问题排查
-      link: /ehafo-frontend/troubleshooting
+      text: 查看项目概况
+      link: /ehafo-frontend/overview
     - theme: alt
-      text: 查看项目地图
-      link: /project-overview
+      text: 问题排查
+      link: /ehafo-frontend/troubleshooting
 
 features:
   - title: 疑难问题排查
