@@ -6,6 +6,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:single": "node scripts/build-single-doc.mjs",
+    "docs:single:test": "node --test scripts/build-single-doc.test.mjs",
     "docs:preview": "vitepress preview docs",
     "check": "node scripts/check-placeholders.mjs"
   },
