@@ -38,18 +38,11 @@
 
 ### PC 打包仓
 
-PC 端不是独立业务实现，而是由 Windows 和 macOS 两个桌面壳加载 `ehafo-quiz` 的 `https://tiku.yihafo.com/?module=v4`。Web 侧通过 UA 中的 `ehafopc` 设置 `ispc=true`，再分别调用 NW.js 的 `nw` 或 Electron preload 暴露的 `nodeRequire`。
+PC 端不是独立业务实现，而是由 Windows 和 macOS 两个桌面壳加载 `ehafo-quiz` 页面。
 
 | Codeup 仓库 | 当前定位 | 事实源 |
 | --- | --- | --- |
 | [`ehafo/yihafo/tikupc`](https://codeup.aliyun.com/ehafo/yihafo/tikupc) | Windows 版 NW.js 打包仓，包含 32/64 位和 Inno Setup 打包配置 | 仓库 `README.md`、`appxs/package.json`、`windows_setup/` |
 | [`ehafo/app/tiku_mac`](https://codeup.aliyun.com/ehafo/app/tiku_mac)（Codeup 显示为 `app/pc_mac`） | macOS 版 Electron 打包仓；`tikupc` 分支对应易哈佛考试，`kefupc` 分支对应咨询系统 | 仓库 `README.md`、对应分支的 `main.js` 与 `package.json` |
 
-当前 PC 端只有以上两个打包入口。确认某个用户实际使用哪一套壳时：
-
-1. 先取得用户安装包或实际下载 URL，不只看仓库更新时间。
-2. 查看进程类型、应用名和 `appId`，再在页面控制台核对 `navigator.userAgent`、`typeof nw`、`typeof nodeRequire`。
-3. NW.js 应命中 `nw`，Electron 应命中 `nodeRequire`；两者都没有时只是普通 PC 浏览器。
-4. 最后回到对应仓的入口、版本和打包配置复现；若要确认历史包，仍以实际安装包或下载物为准。
-
-Web 侧兼容入口见 `ehafo-quiz/frontends/app/v5_src/static/js/core/common/pc.js`，PC 身份判断见 `ehafo-quiz/frontends/app/v5_src/window_defined.js`。修改 PC 行为时优先改 Web 公共逻辑，并至少分别验证 NW.js 和 Electron 的外链打开、下载、视频与缓存恢复。
+当前 PC 端只有以上两个打包入口。Web 侧兼容入口见 `ehafo-quiz/frontends/app/v5_src/static/js/core/common/pc.js`；UA、`ispc`、NW.js / Electron 能力识别和排查字段统一见 [UA 与设备：PC 壳判断](./environment-and-device/ua-device.md#pc-壳判断)。

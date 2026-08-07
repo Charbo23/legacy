@@ -33,6 +33,14 @@ export default withMermaid(
           items: [
             { text: '项目概况', link: '/ehafo-frontend/overview' },
             { text: '仓库与系统关系', link: '/ehafo-frontend/repositories' },
+            {
+              text: '环境与 UA（设备）',
+              collapsed: false,
+              items: [
+                { text: '运行环境', link: '/ehafo-frontend/environment-and-device/environment' },
+                { text: 'UA 与设备', link: '/ehafo-frontend/environment-and-device/ua-device' }
+              ]
+            },
             { text: 'MP 与 subproject', link: '/ehafo-frontend/mp-and-subprojects' },
             { text: 'ehafo-front-lib', link: '/ehafo-frontend/front-lib' },
             { text: 'A/B 测试', link: '/ehafo-frontend/ab-testing' },

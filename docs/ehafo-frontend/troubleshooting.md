@@ -16,7 +16,7 @@ flowchart TD
     H --> I[等待复现后继续分析]
 ```
 
-1. 根据反馈确定用户 UID、发生时间窗、客户端、App 包、入口环境和可见现象；用户对原因的解释先作为假设。时间窗尽量从问题发生前后各留出少量缓冲，不要无边界查询。
+1. 根据反馈确定用户 UID、发生时间窗、[运行环境](./environment-and-device/environment.md)、[UA 与设备矩阵](./environment-and-device/ua-device.md)和可见现象；用户对原因的解释先作为假设。时间窗尽量从问题发生前后各留出少量缓冲，不要无边界查询。
 2. 优先收集 PageSpy、图片和视频。在有生产权限的环境中查询线上 `kaoshi.tmp_data_logs`，用 UID 作为 `itemid`，同时限定必要的开始和结束时间；常规单用户排查不按 `model` 过滤。
 3. 联合分析现场和异常日志，明确哪些是事实、哪些是推断、哪个证据缺口阻止下结论。
 4. 仍无法定位时，只在最能区分候选原因的分叉点增加日志。`model` 名称不超过 20 个字符，否则会被截断。
@@ -59,7 +59,7 @@ PageSpy 后台为 <https://spy.dinice.cn/#/log-list>，具体操作只读 `ehafo
 | 远程 WebView 偶现异常 | 是否能让测试人员打开在线调试 | PageSpy skill；可实时看日志、发指令和执行 `evalJS` |
 | Android 启动、恢复、原生桥异常 | Web 代码是否已部署到至少 DEV，包体环境是否匹配 | ADB；`ehafo_android_app/AGENTS.md`、`ehafo-quiz/frontends/app/e2e/offline-startup-acceptance.md` |
 | MP/subproject 打不开或身份丢失 | 最终 URL、目录 `/`、`sessionid`、`_v` 和 WebView 是否正确 | [MP 与 subproject](./mp-and-subprojects.md) |
-| PC 用户异常 | 实际是普通浏览器、NW.js 还是 Electron | [PC 打包仓识别方法](./repositories.md#pc-打包仓) |
+| PC 用户异常 | 实际是普通浏览器、NW.js 还是 Electron | [UA 与设备：PC 壳判断](./environment-and-device/ua-device.md#pc-壳判断)；打包仓见[仓库与系统关系](./repositories.md#pc-打包仓) |
 
 ADB 理论上可修改包内入口连接本地地址，但证书、路由、跨域、缓存和网络可达性都会引入新变量，默认先部署远程 DEV。
 

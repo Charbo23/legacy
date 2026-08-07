@@ -6,7 +6,7 @@
 
 阅读顺序：
 1. 逻辑项目范围：/project-overview
-2. 易哈佛前台：/ehafo-frontend/overview、/ehafo-frontend/repositories、/ehafo-frontend/mp-and-subprojects、/ehafo-frontend/ab-testing、/ehafo-frontend/tracking、/ehafo-frontend/troubleshooting、/ehafo-frontend/lessons
+2. 易哈佛前台：/ehafo-frontend/overview、/ehafo-frontend/repositories、/ehafo-frontend/environment-and-device/environment、/ehafo-frontend/environment-and-device/ua-device、/ehafo-frontend/mp-and-subprojects、/ehafo-frontend/ab-testing、/ehafo-frontend/tracking、/ehafo-frontend/troubleshooting、/ehafo-frontend/lessons
 3. team-agent-config：/team-agent-config/overview
 4. 小护排班：/schedule/overview
 

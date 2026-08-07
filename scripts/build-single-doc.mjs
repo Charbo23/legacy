@@ -11,6 +11,8 @@ const pages = [
   { file: 'project-overview.md', title: '项目地图' },
   { file: 'ehafo-frontend/overview.md', title: '易哈佛前台：项目概况' },
   { file: 'ehafo-frontend/repositories.md', title: '易哈佛前台：仓库与系统关系' },
+  { file: 'ehafo-frontend/environment-and-device/environment.md', title: '易哈佛前台：运行环境' },
+  { file: 'ehafo-frontend/environment-and-device/ua-device.md', title: '易哈佛前台：UA 与设备' },
   { file: 'ehafo-frontend/mp-and-subprojects.md', title: '易哈佛前台：MP 与 subproject' },
   { file: 'ehafo-frontend/front-lib.md', title: '易哈佛前台：ehafo-front-lib' },
   { file: 'ehafo-frontend/ab-testing.md', title: '易哈佛前台：A/B 测试' },

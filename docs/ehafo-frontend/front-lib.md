@@ -11,7 +11,7 @@
 | `frontends/app/v5_src/static/js/core/utils/common_utils.js` | 判空、字符串、URL、DOM、异步、校验、剪贴板、动态加载、图片/视频辅助等 | 先判断是否只是旧全局函数适配；公共算法需要跨项目复用时才改公共库 |
 | `core/utils/date_utils.js` | 日期格式化、倒计时、时长格式化 | 业务计时状态仍在 quiz，通用计算才属于公共库 |
 | `core/utils/storage_utils.js` | 过期存储、页面 session 备份，以及 `advancedStorageUtils` 的初始化和兼容降级 | 存储键名、账号隔离和清理规则属于 quiz；存储抽象属于公共库 |
-| `core/utils/device_utils.js` | UA、设备和运行载体判断；部分原生能力转接 | 载体业务分支在 quiz；可复用的设备能力才改公共库 |
+| `core/utils/device_utils.js` | quiz 自有的容器、App 包、设备和平板判断；部分原生能力转接 | 判断层次见 [UA 与设备](./environment-and-device/ua-device.md)；载体业务分支留在 quiz |
 | `static/js/webp_utils.js` | WebP 能力检测、CDN 图片转换和 HTML 图片转换 | 图片业务策略在 quiz，WebP 算法在公共库 |
 | `core/utils/ai_chat_utils.js` | AI 流式输出工具的项目入口 | 对话页面和接口协议在 quiz，通用流式处理才改公共库 |
 | `core/common/router_events.js`、`core/common/index.js` | 滑动返回、地区处理、题目标记和小程序环境判断等少量公共调用 | 先查公共函数是否已有实现，避免在页面脚本重复实现 |
@@ -24,7 +24,7 @@
 | --- | --- | --- |
 | `src/common/` | 通用对象/字符串、URL、DOM、AI 流式输出、滑动返回 | 由 `core/utils` 和 `core/common` 包装为历史全局函数 |
 | `src/date/` | 日期、倒计时和时间格式化 | 由 `date_utils.js` 暴露旧调用方式 |
-| `src/device/` | UA、设备、微信小程序和部分运行环境判断 | 由 `device_utils.js` 适配到现有 `ua()` 等函数 |
+| `src/device/` | 通用 UA、系统、PC 和微信小程序判断 | quiz 当前 `ua()`、`os` 和 `ispc` 主链仍由自身源码初始化；`isInMiniProgram()` 包装会调用公共库 |
 | `src/media/` | 图片、视频辅助和 WebP 转换 | `webp_utils.js` 直接转接，媒体页面再组合业务逻辑 |
 | `src/storage/` | 基础过期存储和基于 localForage 的高级存储 | `storage_utils.js` 根据载体选择 IndexedDB 或 localStorage，并保留降级路径 |
 | `src/request/` | `TrackRequest` 使用的基础 XHR 封装 | 只属于统计 SDK 内部；前台普通接口仍使用 quiz 自己的 `jqrequest` |

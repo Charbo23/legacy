@@ -26,4 +26,4 @@ features:
 
 首次接手先读[项目地图](/project-overview)，确认当前工作属于哪个逻辑项目。
 
-易哈佛前台从[项目概况](/ehafo-frontend/overview)和[仓库与系统关系](/ehafo-frontend/repositories)开始；涉及 MP、人机对话、内部考核或电子试卷时进入[MP 与 subproject](/ehafo-frontend/mp-and-subprojects)。收到线上反馈时进入[问题排查](/ehafo-frontend/troubleshooting)；准备上线或验收时核对[测试、验收与项目经验](/ehafo-frontend/lessons)。使用团队 AI 工具配置时阅读[team-agent-config](/team-agent-config/overview)。小护排班只在涉及该项目时阅读[项目概况与发布](/schedule/overview)。
+易哈佛前台从[项目概况](/ehafo-frontend/overview)和[仓库与系统关系](/ehafo-frontend/repositories)开始；部署与入口问题进入[运行环境](/ehafo-frontend/environment-and-device/environment)，端和设备问题进入 [UA 与设备](/ehafo-frontend/environment-and-device/ua-device)。涉及 MP、人机对话、内部考核或电子试卷时进入[MP 与 subproject](/ehafo-frontend/mp-and-subprojects)。收到线上反馈时进入[问题排查](/ehafo-frontend/troubleshooting)；准备上线或验收时核对[测试、验收与项目经验](/ehafo-frontend/lessons)。使用团队 AI 工具配置时阅读[team-agent-config](/team-agent-config/overview)。小护排班只在涉及该项目时阅读[项目概况与发布](/schedule/overview)。

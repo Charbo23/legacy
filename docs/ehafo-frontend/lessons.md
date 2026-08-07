@@ -19,7 +19,7 @@
 
 | 阶段 | 项目内做法 | 容易踩坑 |
 | --- | --- | --- |
-| 定位 | 先确认运行载体和环境，再从[仓库关系](./repositories.md)找到源码仓；MP、SP 和 `web_course` 先看[专页](./mp-and-subprojects.md) | 在主仓编译产物上直接改代码，或把 MP、SP、普通 H5 当成同一套入口 |
+| 定位 | 先按[运行环境](./environment-and-device/environment.md)和 [UA 与设备](./environment-and-device/ua-device.md)确认真实运行矩阵，再从[仓库关系](./repositories.md)找到源码仓；MP、SP 和 `web_course` 先看[专页](./mp-and-subprojects.md) | 在主仓编译产物上直接改代码，或把环境、运行容器、系统和设备混成一个“端” |
 | 理解 | 让 Agent 先读目标仓 `AGENTS.md`、相关 README 和同类实现，只把本手册作为跨仓关系入口 | 把手册中的概括当成最新函数或构建参数，跳过源仓事实源 |
 | 实现 | 修改源码并保持旧版 App 和其他载体可用；涉及 A/B 时从开始就约定收口方式 | 只验证当前端或 B 分支，遗漏旧版、缓存、重试和网关切换 |
 | 快速验证 | 先跑与 diff 对应的 E2E 或最小测试，再按[三层测试](#三层测试如何选择)升级到微信工具或 ADB | 只跑固定 smoke，或用浏览器结果代替微信能力和真机启动验收 |
@@ -48,10 +48,12 @@
 
 | 主题 | 接手时先看 |
 | --- | --- |
-| 环境、入口与两条构建链 | [项目概况](./overview.md#运行环境与入口)；构建细节见 `ehafo-quiz/docs/前端H5构建与CI.md` 和 `ehafo-quiz/plans/handoff.md` |
+| 运行环境与入口 | [运行环境](./environment-and-device/environment.md) |
+| 前端构建链 | `ehafo-quiz/docs/前端H5构建与CI.md` 和 `ehafo-quiz/plans/handoff.md` |
+| UA、系统、PC 壳和平板 | [UA 与设备](./environment-and-device/ua-device.md) |
 | App 离线启动、缓存与恢复 | `ehafo-quiz/frontends/app/e2e/offline-startup-acceptance.md` |
 | PageSpy 远程调试 | `ehafo-quiz/.codex/skills/debug-with-pagespy/SKILL.md` |
 | Android 设备、安装和 ADB | `ehafo_android_app/AGENTS.md` |
 | MP 与 subproject | [MP 与 subproject](./mp-and-subprojects.md) |
 | A/B 放量和收口 | [A/B 测试](./ab-testing.md) |
-| PC 壳差异 | [仓库与系统关系：PC 打包仓](./repositories.md#pc-打包仓) |
+| PC 壳差异 | [UA 与设备：PC 壳判断](./environment-and-device/ua-device.md#pc-壳判断)；打包仓见[仓库与系统关系](./repositories.md#pc-打包仓) |
